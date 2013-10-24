@@ -2,6 +2,8 @@
   'use strict';
 
   Muscle.CollectionView = Muscle.View.extend({
+    renderMethod: 'append',
+
     addOne: function(model) {
       var modelView = new this.modelView({model: model});
       modelView.render();

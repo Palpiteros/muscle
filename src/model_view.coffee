@@ -1,12 +1,12 @@
-class Muscle.ModelView extends Muscle.View
+Muscle.ModelView = Muscle.View.extend
   remove: ->
-    @$el.remove();
-    @trigger('removed');
+    @$el.remove()
+    @trigger('removed')
 
   render: ->
-    Muscle.View.prototype.render.apply(this, [@model.toJSON()]);
+    Muscle.View.prototype.render.apply(this, [@model.toJSON()])
 
   watcher: ->
-    Muscle.View.prototype.watcher.apply(this);
-    @model.on('change', @render, this);
-    @model.on('destroy', @remove, this);
+    Muscle.View.prototype.watcher.apply(this)
+    @model.on('change', @render, this)
+    @model.on('destroy', @remove, this)

@@ -11,6 +11,7 @@ module.exports = (config) ->
       'tests/vendor/underscore.js'
       'tests/vendor/backbone.js'
       'tests/vendor/handlebars.runtime.js'
+      'tmp/templates_test.js'
       'tmp/muscle.js'
 
       'tests/vendor/chai.js'

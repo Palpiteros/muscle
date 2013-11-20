@@ -19,6 +19,4 @@ sudo apt-get -y install nodejs
 
 # Setup project dependencies
 echo "setting up project dependecies"
-sudo npm install -g bower
-sudo npm install -g brunch
-sudo npm install -g cake
+sudo npm install -g coffee-script

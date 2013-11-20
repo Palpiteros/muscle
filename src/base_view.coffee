@@ -6,7 +6,8 @@ Muscle.View = Backbone.View.extend
     @watcher()
     @trigger('initialized')
 
-  renderMethod: 'html',
+  renderMethod: 'html'
+  templateDir: 'app/templates/'
 
   render: (obj) ->
     @$el[@renderMethod](@template(obj))
@@ -16,7 +17,10 @@ Muscle.View = Backbone.View.extend
     @on('rendered', @DOMControl, this)
 
   createTemplate: ->
-    @template = HandlebarsTemplates['app/templates/' + @templateName]
+    if HandlebarsTemplates?
+      @template = HandlebarsTemplates[@templateDir + @templateName]
+    else
+      @template = Handlebars.templates[@templateName + '.hbs']
 
   DOMControl: ->
 

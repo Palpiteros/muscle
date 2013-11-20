@@ -1,3 +1,5 @@
+Muscle = window.Muscle = {}
+
 Muscle.View = Backbone.View.extend
   initialize: ->
     @createTemplate()

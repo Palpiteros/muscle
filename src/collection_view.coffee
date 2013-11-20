@@ -1,34 +1,25 @@
-(function () {
-  'use strict';
+class Muscle.CollectionView extends Muscle.View
+  renderMethod: 'append',
 
-  Muscle.CollectionView = Muscle.View.extend({
-    renderMethod: 'append',
+  addOne: (model) -> 
+    var modelView = new @modelView({model: model});
+    modelView.render();
+    @$el[@renderMethod](modelView.el);
 
-    addOne: function(model) {
-      var modelView = new this.modelView({model: model});
-      modelView.render();
-      this.$el[this.renderMethod](modelView.el);
-    },
+  addAll: ->
+    @collection.forEach(@addOne, this);
 
-    addAll: function() {
-      this.collection.forEach(this.addOne, this);
-    },
+  render: ->
+    @addAll();
+    @trigger('rendered');
 
-    render: function() {
-      this.addAll();
-      this.trigger('rendered');
-    },
+  remove: (model) -> 
+    model.destroy();
 
-    remove: function(model) {
-      model.destroy();
-    },
+  watcher: ->
+    Muscle.View.prototype.watcher.apply(this);
+    @collection.on('add', @addOne, this);
+    @collection.on('reset', @addAll, this);
+    @collection.on('reset', @DOMControl, this);
+    @collection.on('remove', @remove, this);
 
-    watcher: function() {
-      Muscle.View.prototype.watcher.apply(this);
-      this.collection.on('add', this.addOne, this);
-      this.collection.on('reset', this.addAll, this);
-      this.collection.on('reset', this.DOMControl, this);
-      this.collection.on('remove', this.remove, this);
-    }
-  });
-}());

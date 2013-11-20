@@ -1,20 +1,12 @@
-(function () {
-  'use strict';
+class Muscle.ModelView extends Muscle.View
+  remove: ->
+    @$el.remove();
+    @trigger('removed');
 
-  Muscle.ModelView = Muscle.View.extend({
-    remove: function() {
-      this.$el.remove();
-      this.trigger('removed');
-    },
+  render: ->
+    Muscle.View.prototype.render.apply(this, [@model.toJSON()]);
 
-    render: function() {
-      Muscle.View.prototype.render.apply(this, [this.model.toJSON()]);
-    },
-
-    watcher: function() {
-      Muscle.View.prototype.watcher.apply(this);
-      this.model.on('change', this.render, this);
-      this.model.on('destroy', this.remove, this);
-    }
-  });
-}());
+  watcher: ->
+    Muscle.View.prototype.watcher.apply(this);
+    @model.on('change', @render, this);
+    @model.on('destroy', @remove, this);

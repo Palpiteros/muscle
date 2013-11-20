@@ -1,28 +1,20 @@
-(function() {
-  'use strict';
+class Muscle.View extends Backbone.View
+  initialize: ->
+    @createTemplate();
+    @watcher();
+    @trigger('initialized');
 
-  Muscle.View = Backbone.View.extend({
-    initialize: function() {
-      this.createTemplate();
-      this.watcher();
-      this.trigger('initialized');
-    },
+  renderMethod: 'html',
 
-    renderMethod: 'html',
+  render: (obj) ->
+    @$el[@renderMethod](@template(obj));
+    @trigger('rendered');
 
-    render: function(obj) {
-      this.$el[this.renderMethod](this.template(obj));
-      this.trigger('rendered');
-    },
+  watcher: ->
+    @on('rendered', @DOMControl, this);
 
-    watcher: function() {
-      this.on('rendered', this.DOMControl, this);
-    },
+  createTemplate: ->
+    @template = HandlebarsTemplates['app/templates/' + @templateName];
 
-    createTemplate: function() {
-      this.template = HandlebarsTemplates['app/templates/' + this.templateName];
-    },
+    DOMControl: ->
 
-    DOMControl: function() {}
-  });
-}());

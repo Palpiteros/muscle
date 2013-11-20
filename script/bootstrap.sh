@@ -20,6 +20,7 @@ sudo apt-get -y install nodejs
 # Setup project dependencies
 echo "setting up project dependecies"
 sudo npm install -g coffee-script
+sudo npm install -g handlebars
 sudo npm install -g karma
 sudo npm install -g karma-mocha
 sudo npm install -g karma-coffee-preprocessor

@@ -15,3 +15,10 @@ $ cake build
 ```
 
 The build will output a single file: tmp/muscle.js.
+
+#### testing:
+```
+$ cake test
+```
+
+The test will build the lib and run the tests.

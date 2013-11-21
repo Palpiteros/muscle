@@ -11,5 +11,5 @@ dependencies:
     - npm install -g karma-safari-launcher
     - npm install -g phantomjs
   test:
-    override:
+    post:
       - cake test

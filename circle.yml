@@ -1,0 +1,15 @@
+dependencies:
+  pre:
+    - npm install -g coffee-script
+    - npm install -g handlebars
+    - npm install -g karma
+    - npm install -g karma-mocha
+    - npm install -g karma-coffee-preprocessor
+    - npm install -g karma-phantomjs-launcher
+    - npm install -g karma-chrome-launcher
+    - npm install -g karma-firefox-launcher
+    - npm install -g karma-safari-launcher
+    - npm install -g phantomjs
+  test:
+    override:
+      - cake test

@@ -19,7 +19,7 @@ Muscle.CollectionView = Muscle.View.extend
   watcher: ->
     Muscle.View.prototype.watcher.apply(this)
     @collection.on('add', @addOne, this)
-    @collection.on('reset', @addAll, this)
-    @collection.on('reset', @DOMControl, this)
+    @collection.on('reset', @render, this)
+    @collection.on('rendered', @DOMControl, this)
     @collection.on('remove', @remove, this)
 

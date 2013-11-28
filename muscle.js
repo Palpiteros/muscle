@@ -52,8 +52,8 @@
     watcher: function() {
       Muscle.View.prototype.watcher.apply(this);
       this.collection.on('add', this.addOne, this);
-      this.collection.on('reset', this.addAll, this);
-      this.collection.on('reset', this.DOMControl, this);
+      this.collection.on('reset', this.render, this);
+      this.collection.on('rendered', this.DOMControl, this);
       return this.collection.on('remove', this.remove, this);
     }
   });
